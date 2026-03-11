@@ -1,52 +1,20 @@
-//Import Express,mysql2,cors
-const express =require("express");
-const db = require("./database");
+const express = require("express");
 const cors = require("cors");
+const db = require("./database");
 
 const app = express();
 const PORT = 3000;
-//Middleware
+
 app.use(cors());
 app.use(express.json());
- 
-//Testing if the Route in running
-app.get('/',(req,res)=>{
-    res.send("MedTracker server is running...");
+
+// Test route
+app.get("/", (req, res) => {
+    res.send("MedTracker backend running...");
 });
 
-//Route
-//Log-in
-app.post("/login",(req,res)=>{
-    const {email,pass} = req.body;
-    const sql = `SELECT * FROM users WHERE email = ? AND pass = ?`;
-
-    db.get(sql, [email,pass],(err,row)=>{
-        if(err){
-            console.error("Login error", err.message);
-            return res.status(500).json({
-                success: false,
-                message:"Database error"
-            });
-        }
-    //respond to the request from the frontend after validation
-        if(!row){
-            return res.json({
-                success: false,
-                message: "Invalid email or password"
-            });
-            
-        }
-        res.json({
-            success:true,
-            message: "Login Successful",
-            user:row
-        });
-    });
-});
-
-//Sign up
+// REGISTER
 app.post("/register", (req, res) => {
-
     const {
         first_name,
         last_name,
@@ -63,37 +31,52 @@ app.post("/register", (req, res) => {
         VALUES (?, ?, ?, ?, ?, ?, ?)
     `;
 
-    db.run(
-        sql,
-        [first_name, last_name, date_of_birth, address, email, contact_number, pass],
-
-        function (err) {
-
-            if (err) {
-
-                console.log("Register error:", err.message);
-
-                return res.json({
-                    success: false,
-                    message: "Failed to register user"
-                });
-
-            }
-
-            res.json({
-                success: true,
-                message: "User registered successfully",
-                user_id: this.lastID
-            });
-
+    db.run(sql, [first_name, last_name, date_of_birth, address, email, contact_number, pass], function (err) {
+        if (err) {
+            console.log("Register error:", err.message);
+            return res.json({ success: false, message: "Registration failed" });
         }
-    );
 
+        res.json({
+            success: true,
+            message: "User registered successfully"
+        });
+    });
 });
 
-//Add medicine
-app.post("/add_medicine",(req,res)=>{
-    const{
+// LOGIN
+app.post("/login", (req, res) => {
+    const { email, pass } = req.body;
+
+    const sql = `
+        SELECT * FROM users
+        WHERE email = ? AND pass = ?
+    `;
+
+    db.get(sql, [email, pass], (err, row) => {
+        if (err) {
+            console.log("Login error:", err.message);
+            return res.json({ success: false, message: "Login failed" });
+        }
+
+        if (!row) {
+            return res.json({ success: false, message: "Invalid email or password" });
+        }
+
+        res.json({
+            success: true,
+            message: "Login successful",
+            user: row
+        });
+    });
+});
+
+app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+});
+/* ADD MEDICINE */
+app.post("/add-medicine", (req, res) => {
+    const {
         user_id,
         medicine_name,
         quantity_taken,
@@ -102,96 +85,231 @@ app.post("/add_medicine",(req,res)=>{
         medicine_date,
         medicine_time,
         status
-    }=req.body;
+    } = req.body;
 
-    const sql = `INSERT INTO medicines (
-    user_id,
-    medicine_name,
-    quantity_taken,
-    dosage_per_tablet,
-    total_dosage,
-    medicine_date,
-    medicine_time,
-    status
-    )VALUES(?,?,?,?,?,?,?,?)`
+    const sql = `
+        INSERT INTO medicines
+        (user_id, medicine_name, quantity_taken, dosage_per_tablet, total_dosage, medicine_date, medicine_time, status)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    `;
 
-db.run(
-    sql,
-    [
-    user_id,
-    medicine_name,
-    quantity_taken,
-    dosage_per_tablet,
-    total_dosage,
-    medicine_date,
-    medicine_time,
-    status
-    ],
-    function (err){
-        if(err){
-            console.error("Erro", err.message);
-            return res.status(500).json({
-                success:false,
-                message:"Failed to add medicine"
+    db.run(
+        sql,
+        [
+            user_id,
+            medicine_name,
+            quantity_taken,
+            dosage_per_tablet,
+            total_dosage,
+            medicine_date,
+            medicine_time,
+            status
+        ],
+        function (err) {
+            if (err) {
+                console.log("Add medicine error:", err.message);
+                return res.json({
+                    success: false,
+                    message: "Failed to save medicine"
+                });
+            }
+
+            res.json({
+                success: true,
+                message: "Medicine saved successfully",
+                medicine_id: this.lastID
             });
         }
-        res.json({
-            success:true,
-            message:"Medicine added successfully",
-            medicine_id:this.lastID
-        });
-    }
-);
+    );
 });
 
-//Medicine History
-app.get("/history/user:id",(req,res)=>{
-    const {user_id} = req.params;
+/* TODAY MEDICINES */
+app.get("/today-medicines/:user_id", (req, res) => {
+    const { user_id } = req.params;
+
+    const now = new Date();
+    const today =
+        now.getFullYear() + "-" +
+        String(now.getMonth() + 1).padStart(2, "0") + "-" +
+        String(now.getDate()).padStart(2, "0");
+
     const sql = `
-    SELECT * FROM medicines WHERE user_id = ?
-    ORDER BY date DESC,time DESC`;
-db.all(sql, [user_id], (err,rows)=>{
-    if(err){
-        console.error("History error: ",err.message);
-        return res.status(500).json({
-            success:false,
-            message:"Failed to fetch medicine history"
-        })
-    }
-    res.json({
-        success:true,
-        history:rows
+        SELECT * FROM medicines
+        WHERE user_id = ? AND medicine_date = ?
+        ORDER BY medicine_time ASC
+    `;
+
+    db.all(sql, [user_id, today], (err, rows) => {
+        if (err) {
+            console.log("Today medicines error:", err.message);
+            return res.json({
+                success: false,
+                message: "Failed to fetch medicines"
+            });
+        }
+
+        res.json({
+            success: true,
+            medicines: rows
+        });
     });
 });
-});
 
-//view profile
-app.get("/profile/:id",(req,res)=>{
-    const {id} = req.params;
-    const sql = `SELECT id,first_name,last_name, date_of_birth, address,email
-    ,contact_number FROM users WHERE id=?`;
+/* MEDICINE HISTORY */
+app.get("/history/:user_id", (req, res) => {
+    const { user_id } = req.params;
 
-db.get(sql,[id],(err,row)=>{
-    if(err){
-        console.error("Error", err.message);
-        return res.status(500).json({
-            success:false,
-            message: "Failed to fetch profile"
+    const sql = `
+        SELECT * FROM medicines
+        WHERE user_id = ?
+        ORDER BY medicine_date DESC, medicine_time DESC
+    `;
+
+    db.all(sql, [user_id], (err, rows) => {
+        if (err) {
+            console.log("History error:", err.message);
+            return res.json({
+                success: false,
+                message: "Failed to fetch history"
+            });
+        }
+
+        res.json({
+            success: true,
+            history: rows
         });
-    }
-    if (!row){
-        return res.json({
-            success:false,
-            message:"User not found"
-        });
-    }
-    res.json({
-        success:true,
-        profile:row
     });
 });
+
+/* GET PROFILE */
+app.get("/profile/:id", (req, res) => {
+    const { id } = req.params;
+
+    const sql = `
+        SELECT id, first_name, last_name, date_of_birth, address, email, contact_number
+        FROM users
+        WHERE id = ?
+    `;
+
+    db.get(sql, [id], (err, row) => {
+        if (err) {
+            console.log("Profile error:", err.message);
+            return res.json({
+                success: false,
+                message: "Failed to fetch profile"
+            });
+        }
+
+        if (!row) {
+            return res.json({
+                success: false,
+                message: "User not found"
+            });
+        }
+
+        res.json({
+            success: true,
+            profile: row
+        });
+    });
 });
 
-app.listen(PORT,()=>{
+/* UPDATE PROFILE */
+app.put("/profile/:id", (req, res) => {
+    const { id } = req.params;
+
+    const {
+        first_name,
+        last_name,
+        date_of_birth,
+        address,
+        email,
+        contact_number
+    } = req.body;
+
+    const sql = `
+        UPDATE users
+        SET first_name = ?,
+            last_name = ?,
+            date_of_birth = ?,
+            address = ?,
+            email = ?,
+            contact_number = ?
+        WHERE id = ?
+    `;
+
+    db.run(
+        sql,
+        [first_name, last_name, date_of_birth, address, email, contact_number, id],
+        function (err) {
+            if (err) {
+                console.log("Update profile error:", err.message);
+                return res.json({
+                    success: false,
+                    message: "Failed to update profile"
+                });
+            }
+
+            res.json({
+                success: true,
+                message: "Profile updated successfully"
+            });
+        }
+    );
+});
+
+/* UPDATE MEDICINE STATUS */
+app.put("/medicine-status/:id", (req, res) => {
+    const { id } = req.params;
+    const { status } = req.body;
+
+    const sql = `
+        UPDATE medicines
+        SET status = ?
+        WHERE id = ?
+    `;
+
+    db.run(sql, [status, id], function (err) {
+        if (err) {
+            console.log("Update status error:", err.message);
+            return res.json({
+                success: false,
+                message: "Failed to update status"
+            });
+        }
+
+        res.json({
+            success: true,
+            message: "Status updated successfully"
+        });
+    });
+});
+
+/* DELETE MEDICINE */
+app.delete("/delete-medicine/:id", (req, res) => {
+    const { id } = req.params;
+
+    const sql = `
+        DELETE FROM medicines
+        WHERE id = ?
+    `;
+
+    db.run(sql, [id], function (err) {
+        if (err) {
+            console.log("Delete medicine error:", err.message);
+            return res.json({
+                success: false,
+                message: "Failed to delete medicine"
+            });
+        }
+
+        res.json({
+            success: true,
+            message: "Medicine deleted successfully"
+        });
+    });
+});
+
+app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });

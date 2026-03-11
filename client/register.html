@@ -1,52 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
     <title>Register</title>
 </head>
-
 <body>
+    <h2>Create Account</h2>
+    <form id="registerForm">
+        <label>First Name</label><br>
+        <input type="text" id="first_name" required><br><br>
 
-<h2>Create Account</h2>
+        <label>Last Name</label><br>
+        <input type="text" id="last_name" required><br><br>
 
-<form id="registerForm">
+        <label>Date of Birth</label><br>
+        <input type="date" id="date_of_birth" required><br><br>
 
-    <label>First Name</label><br>
-    <input type="text" id="first_name" required><br><br>
+        <label>Address</label><br>
+        <input type="text" id="address" required><br><br>
 
-    <label>Last Name</label><br>
-    <input type="text" id="last_name" required><br><br>
+        <label>Email</label><br>
+        <input type="email" id="email" required><br><br>
 
-    <label>Date of Birth</label><br>
-    <input type="date" id="date_of_birth" required><br><br>
+        <label>Contact Number</label><br>
+        <input type="text" id="contact_number" required><br><br>
 
-    <label>Address</label><br>
-    <input type="text" id="address" required><br><br>
+        <label>Password</label><br>
+        <input type="password" id="password" required><br><br>
 
-    <h3>Security Information</h3>
-
-    <label>Email</label><br>
-    <input type="email" id="email" required><br><br>
-
-    <label>Contact Number</label><br>
-    <input type="text" id="contact_number" required><br><br>
-
-    <label>Password</label><br>
-    <input type="password" id="password" required><br><br>
-
-    <input type="checkbox" onclick="showPassword()"> Show Password
-    <br><br>
-
-    <button type="submit">Register</button>
-
-</form>
-
-<p>
-Already have an account?
-<button onclick="window.location.href='login.html'">Go to Login</button>
-</p>
-
-<script src="./js/register.js"></script>
-
+        <button type="submit">Register</button>
+    </form>
+    <p id="msg"></p>
+    <p>Already have an account? <a href="login.html">Login</a></p>
+    <script src="register.js"></script>
 </body>
 </html>

@@ -1,24 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Medicine History</title>
 </head>
-<header>
-    <h1>MedTrack</h1>
-    <nav id="nav_menu">
-       <ul>
-        <li>
-            <a href="/client/dashboard.html">Home</a>
-            <a href="/client/history.html">History</a>
-            <a href="/client/profile.html">Profile</a>
-            <a href="/client/login.html">Logout</a>
-        </li>
-       </ul>
-    </nav>
-</header>
 <body>
-    Medicine History
+
+<h2>Medicine History</h2>
+
+<table border="1">
+    <tr>
+        <th>Medicine</th>
+        <th>Quantity</th>
+        <th>Dosage</th>
+        <th>Total</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Status</th>
+    </tr>
+    <tbody id="historyTable"></tbody>
+</table>
+
+<br>
+<button onclick="goBack()">Back</button>
+
+<p id="msg"></p>
+
+<script src="history.js"></script>
+
 </body>
 </html>

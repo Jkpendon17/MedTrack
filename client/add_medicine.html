@@ -1,36 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Add Medicine</title>
 </head>
+
 <body>
-    <h1>MedTrack</h1>
 
 <h2>Add Medicine Intake</h2>
 
-<label>Medicine name</label><br>
-<input id="medicine"><br><br>
+<label>Medicine Name</label><br>
+<input type="text" id="medicine_name"><br><br>
 
-<label>Quantity</label>
-<input id="quantity">
+<label>Quantity</label><br>
+<input type="number" id="quantity_taken"><br><br>
 
-<label>Dosage per tablet</label>
-<input id="dosage">
+<label>Dosage per tablet (mg)</label><br>
+<input type="number" id="dosage_per_tablet"><br><br>
 
-<label>Total Dosage</label>
-<input id="total"><br><br>
+<label>Total Dosage</label><br>
+<input type="number" id="total_dosage" readonly><br><br>
 
-<label>Date</label>
-<input type="date" id="date">
+<label>Date</label><br>
+<input type="date" id="medicine_date"><br><br>
 
-<label>Time</label>
-<input type="time" id="time"><br><br>
+<label>Time</label><br>
+<input type="time" id="medicine_time"><br><br>
 
-<button onclick="cancel()">Cancel</button>
-<button onclick="save()">Save</button>
+<button onclick="saveMedicine()">Save</button>
+<button onclick="goBack()">Back</button>
 
-<script src="js/add-medicine.js"></script>
+<p id="msg"></p>
+
+<script src="add_medicine.js"></script>
+
 </body>
 </html>
