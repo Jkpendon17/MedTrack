@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <head>
     <title>Login</title>
 </head>
@@ -13,7 +14,12 @@
         <label>Email</label><br>
         <input type="email" id="email" required><br><br>
         <label>Password</label><br>
-        <input type="password" id="password" required><br><br>
+        <input type="pass" id="pass" required><br><br>
+        <label>
+        <input type="checkbox" id="showpass" onclick="showPassword()">
+        Show Password
+        </label>
+        <br><br>
         <p id="loginMessage" style="color:red;"></p>
         <button type="submit">Login</button>
 
@@ -22,7 +28,7 @@
         Don't have an account?
         <a href="register.html">Register here</a>
     </p>
-    <script src="login.js"></script>
+    <script src="./js/login.js"></script>
 
 </body>
 

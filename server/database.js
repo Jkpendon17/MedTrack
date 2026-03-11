@@ -8,6 +8,7 @@ const db = new sqlite3.Database("./medtracker.db", (err) => {
     }
 });
 
+
 // Create users table
 db.run(`
     CREATE TABLE IF NOT EXISTS users (

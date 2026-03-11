@@ -14,47 +14,7 @@ app.get('/',(req,res)=>{
     res.send("MedTracker server is running...");
 });
 
-//Routers
-
-//Sign up
-app.post("/register", (req, res) => {
-    const {
-        first_name,
-        last_name,
-        date_of_birth,
-        address,
-        email,
-        contact_number,
-        pass
-    } = req.body;
-
-    const sql = `
-        INSERT INTO users 
-        (first_name, last_name, date_of_birth, address, email, contact_number, pass)
-        VALUES (?, ?, ?, ?, ?, ?, ?)
-    `;
-
-    db.run(
-        sql,
-        [first_name, last_name, date_of_birth, address, email, contact_number, pass],
-        function (err) {
-            if (err) {
-                console.error("Register error:", err.message);
-                return res.status(500).json({
-                    success: false,
-                    message: "Failed to register user"
-                });
-            }
-
-            res.json({
-                success: true,
-                message: "User registered successfully",
-                user_id: this.lastID
-            });
-        }
-    );
-});
-
+//Route
 //Log-in
 app.post("/login",(req,res)=>{
     const {email,pass} = req.body;
@@ -68,12 +28,67 @@ app.post("/login",(req,res)=>{
                 message:"Database error"
             });
         }
+    //respond to the request from the frontend after validation
+        if(!row){
+            return res.json({
+                success: false,
+                message: "Invalid email or password"
+            });
+            
+        }
         res.json({
             success:true,
             message: "Login Successful",
             user:row
         });
     });
+});
+
+//Sign up
+app.post("/register", (req, res) => {
+
+    const {
+        first_name,
+        last_name,
+        date_of_birth,
+        address,
+        email,
+        contact_number,
+        pass
+    } = req.body;
+
+    const sql = `
+        INSERT INTO users
+        (first_name, last_name, date_of_birth, address, email, contact_number, pass)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+    `;
+
+    db.run(
+        sql,
+        [first_name, last_name, date_of_birth, address, email, contact_number, pass],
+
+        function (err) {
+
+            if (err) {
+
+                console.log("Register error:", err.message);
+
+                return res.json({
+                    success: false,
+                    message: "Failed to register user"
+                });
+
+            }
+
+            res.json({
+                success: true,
+                message: "User registered successfully",
+                user_id: this.lastID
+            });
+
+        }
+    );
+
 });
 
 //Add medicine
@@ -176,50 +191,6 @@ db.get(sql,[id],(err,row)=>{
     });
 });
 });
-
-//Update profile
-app.put("/profile/:id",(req,res)=>{
-    const{id} = req.params;
-    const {
-        first_name,
-        last_name,
-        date_of_birth,
-        address,
-        email,
-        contact_number
-    }=req.body;
-    const sql = `UPDATE users
-    SET first_name = ?,
-    last_name = ?,
-    date_of_birth =?,
-    address =?,
-    email =?,
-    contact_number =?
-    WHERE id= ?
-    `;
-    db.run(
-        sql,
-        [first_name,last_name,date_of_birth,address,email,contact_number,id],
-        function(err){
-            if(err){
-                console.error("Error", err.message);
-                return res.status(500).json({
-                    success:false,
-                    message:"Failed to update profi;e"
-                });
-            }
-            res.json({
-                success:true,
-                message:"Profile updated successfully",
-                changes: this.changes
-            });
-        }
-    );
-});
-
-
-
-
 
 app.listen(PORT,()=>{
     console.log(`Server running on http://localhost:${PORT}`);

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<header>
+    <h1>MedTrack</h1>
+    <nav id="nav_menu">
+       <ul>
+        <li>
+            <a href="/client/dashboard.html">Home</a>
+            <a href="/client/history.html">History</a>
+            <a href="/client/profile.html">Profile</a>
+            <a href="/client/login.html">Logout</a>
+        </li>
+       </ul>
+    </nav>
+</header>
+<body>
+    
+<h2>Welcome to MedTrack!</h2>
+
+
+<button onclick="goAdd()">Add Medicine</button>
+
+<h3>Today's Medicine Schedule</h3>
+
+<table border="1">
+
+<tr>
+<th>✓</th>
+<th>Medicine</th>
+<th>Dosage</th>
+<th>Qty</th>
+<th>Time</th>
+<th>Actions</th>
+</tr>
+
+<tr>
+<td><input type="checkbox"></td>
+<td>Paracetamol</td>
+<td>500mg</td>
+<td>1</td>
+<td>8:00 AM</td>
+<td>
+<button onclick="editMedicine()">Edit</button>
+<button onclick="deleteMedicine()">Delete</button>
+</td>
+</tr>
+
+<tr>
+<td><input type="checkbox"></td>
+<td>Vitamin C</td>
+<td>500mg</td>
+<td>1</td>
+<td>8:00 AM</td>
+<td>
+<button onclick="editMedicine()">Edit</button>
+<button onclick="deleteMedicine()">Delete</button>
+</td>
+</tr>
+
+</table>
+
+<script src="js/dashboard.js"></script>
+</body>
+</html>
