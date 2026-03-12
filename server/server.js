@@ -65,7 +65,7 @@ app.post("/login", (req, res) => {
         res.json({
             success: true,
             message: "Login successful",
-            user: row.id
+            user_id: row.id
         });
     });
 });
