@@ -14,7 +14,7 @@ form.addEventListener("submit", async function (e) {
   };
 
   try {
-    const res = await fetch("https://medtrack-api.onrender.com/login", {
+    const res = await fetch("https://medtrack-api.onrender.com/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)
