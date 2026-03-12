@@ -1,5 +1,5 @@
 const user = JSON.parse(localStorage.getItem("user"));
-
+const user_id = localStorage.getItem("user_id");
 if (!user) {
     alert("Please login first");
     window.location.href = "login.html";
@@ -11,7 +11,7 @@ document.getElementById("welcome").innerText =
 loadTodayMedicines();
 
 function loadTodayMedicines() {
-    fetch("https://medtrack-api.onrender.com/today-medicines/" + user_id)
+    fetch(`https://medtrack-api.onrender.com/today-medicines/${user_id}`)
         .then(res => res.json())
         .then(data => {
             const table = document.getElementById("medicineTable");
