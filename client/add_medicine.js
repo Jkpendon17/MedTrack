@@ -1,4 +1,4 @@
-const user = JSON.parse(localStorage.getItem("user"));
+const userId= JSON.parse(localStorage.getItem("user_Id"));
 const editMedicineId = localStorage.getItem("editMedicineId");
 
 if (editMedicineId) {
@@ -30,7 +30,7 @@ function saveMedicine() {
     }
 
     const medicineData = {
-        user_id: user.id,
+        user_id: userId,
         medicine_name: document.getElementById("medicine_name").value,
         quantity_taken: quantity,
         dosage_per_tablet: dosage,
