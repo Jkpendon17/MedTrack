@@ -6,10 +6,6 @@ const db = require("./database");
 const app = express();
 app.use(cors());
 const PORT = process.env.PORT || 3000;
-
-app.use(cors({
-    origin: "https://med-track-git-main-jkpendon17s-projects.vercel.app"
-}));
 app.use(express.json());
 
 app.get("/", (req, res) => {
