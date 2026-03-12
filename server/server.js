@@ -6,11 +6,12 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors({
-    origin:[
-        "https://med-track-git-main-jkpendon17s-projects.vercel.app/",
-        "http://127.0.0.1:5000"
+    origin: [
+        "https://med-track-git-main-jkpendon17s-projects.vercel.app",
+        "https://med-track-gamma.vercel.app",
+        "http://127.0.0.1:5500"
     ]
-})); 
+}));
 app.use(express.json());
 
 app.get("/", (req, res) => {
