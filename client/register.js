@@ -40,3 +40,12 @@ form.addEventListener("submit", function(e){
         alert("Server error");
     });
 });
+function togglePassword() {
+    const password = document.getElementById("password");
+
+    if (password.type === "password") {
+        password.type = "text";
+    } else {
+        password.type = "password";
+    }
+}
