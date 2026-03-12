@@ -1,9 +1,6 @@
 const user = JSON.parse(localStorage.getItem("user"));
 const user_id = localStorage.getItem("user_id");
-if (!user) {
-    alert("Please login first");
-    window.location.href = "login.html";
-}
+
 
 document.getElementById("welcome").innerText =
     "Welcome, " + user.first_name + "!";
