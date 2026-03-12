@@ -1,10 +1,6 @@
 const user = JSON.parse(localStorage.getItem("user"));
 const user_id = localStorage.getItem("user_id");
 
-
-document.getElementById("welcome").innerText =
-    "Welcome, " + "user ";
-
 loadTodayMedicines();
 
 function loadTodayMedicines() {
