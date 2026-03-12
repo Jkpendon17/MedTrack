@@ -1,5 +1,6 @@
 const form = document.getElementById("loginForm");
 
+
 form.addEventListener("submit", function(e){
     e.preventDefault();
 
@@ -20,7 +21,7 @@ form.addEventListener("submit", function(e){
     .then(data => {
         if (data.success) {
             alert("Login successful");
-            localStorage.setItem("user_id", data.user_id);
+            sessionStorage.setItem("user_id", data.user_id);
             window.location.href = "dashboard.html";
         } else {
             document.getElementById("msg").innerText = data.message;
