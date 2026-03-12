@@ -37,3 +37,19 @@ fetch(`http://127.0.0.1:3000/history/${user.id}`)
 function goBack() {
     window.location.href = "dashboard.html";
 }
+/* NAVIGATION */
+
+
+
+function goHistory(){
+    window.location.href = "history.html";
+}
+
+function goProfile(){
+    window.location.href = "profile.html";
+}
+
+function logout(){
+    localStorage.removeItem("user");
+    window.location.href = "login.html";
+}

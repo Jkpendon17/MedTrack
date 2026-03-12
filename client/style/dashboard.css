@@ -1,0 +1,136 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family: Arial, sans-serif;
+background:#f5f5f5;
+}
+
+/* Navigation */
+
+.nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px;
+background:#2d6cdf;
+color:white;
+}
+
+.nav-buttons button{
+margin-left:8px;
+padding:6px 10px;
+border:none;
+background:white;
+color:#2d6cdf;
+cursor:pointer;
+border-radius:4px;
+font-size:14px;
+}
+
+.nav-buttons button:hover{
+background:#e4e4e4;
+}
+
+/* Container */
+
+.container{
+padding:20px;
+max-width:900px;
+margin:auto;
+}
+
+/* Add medicine button */
+
+.add-btn{
+margin:15px 0;
+padding:10px 14px;
+background:#32b82bd5;
+color:white;
+border:none;
+border-radius:4px;
+cursor:pointer;
+}
+
+.add-btn:hover{
+background:#51e06be9;
+}
+
+/* Table */
+
+table{
+width:100%;
+border-collapse:collapse;
+background:white;
+}
+
+th,td{
+padding:10px;
+border:1px solid #ddd;
+text-align:left;
+font-size:14px;
+}
+
+th{
+background:#f0f0f0;
+}
+
+/* Action buttons */
+
+.action-buttons{
+display:flex;
+gap:8px;
+}
+
+/* Edit button */
+.edit-btn{
+background:#4CAF50;
+color:white;
+border:none;
+padding:6px 14px;
+border-radius:4px;
+font-size:13px;
+cursor:pointer;
+}
+
+/* Delete button */
+.delete-btn{
+background:#e74c3c;
+color:white;
+border:none;
+padding:6px 14px;
+border-radius:4px;
+font-size:13px;
+cursor:pointer;
+}
+
+/* Hover effects */
+.edit-btn:hover{
+background:#3e9443;
+}
+
+.delete-btn:hover{
+background:#c0392b;
+}
+
+/* Mobile */
+
+@media(max-width:600px){
+
+.nav{
+flex-direction:column;
+align-items:flex-start;
+}
+
+.nav-buttons{
+margin-top:10px;
+}
+
+table{
+font-size:12px;
+}
+
+}

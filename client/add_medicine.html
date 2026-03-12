@@ -1,35 +1,53 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Add Medicine</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add Medicine</title>
+<link rel="stylesheet" href="style/add_medicine.css">
 </head>
 
 <body>
 
+<header class="nav">
+    <h2>MedTrack</h2>
+
+    <div class="nav-buttons">
+        <button onclick="goHistory()">History</button>
+        <button onclick="goProfile()">Profile</button>
+        <button onclick="logout()">Logout</button>
+    </div>
+</header>
+
+<div class="container">
+
 <h2>Add Medicine Intake</h2>
 
-<label>Medicine Name</label><br>
-<input type="text" id="medicine_name"><br><br>
+<label>Medicine Name</label>
+<input type="text" id="medicine_name">
 
-<label>Quantity</label><br>
-<input type="number" id="quantity_taken"><br><br>
+<label>Quantity</label>
+<input type="number" id="quantity_taken">
 
-<label>Dosage per tablet (mg)</label><br>
-<input type="number" id="dosage_per_tablet"><br><br>
+<label>Dosage per tablet (mg)</label>
+<input type="number" id="dosage_per_tablet">
 
-<label>Total Dosage</label><br>
-<input type="number" id="total_dosage" readonly><br><br>
+<label>Total Dosage</label>
+<input type="number" id="total_dosage" readonly>
 
-<label>Date</label><br>
-<input type="date" id="medicine_date"><br><br>
+<label>Date</label>
+<input type="date" id="medicine_date">
 
-<label>Time</label><br>
-<input type="time" id="medicine_time"><br><br>
+<label>Time</label>
+<input type="time" id="medicine_time">
 
+<div class="buttons">
 <button onclick="saveMedicine()">Save</button>
-<button onclick="goBack()">Back</button>
+<button onclick="goBack()" id="Backbtn">Back</button>
+</div>
 
 <p id="msg"></p>
+
+</div>
 
 <script src="add_medicine.js"></script>
 

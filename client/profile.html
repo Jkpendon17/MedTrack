@@ -1,24 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
+    <link rel="stylesheet" href="style/profile.css">
 </head>
 <body>
 
-<h2>Profile</h2>
+    <header class="nav">
+        <h2>MedTrack</h2>
+        <div class="nav-buttons">
+            <button onclick="goHistory()">History</button>
+            <button onclick="goProfile()">Profile</button>
+            <button onclick="logout()">Logout</button>
+        </div>
+    </header>
 
-<p><b>First Name:</b> <span id="first_name"></span></p>
-<p><b>Last Name:</b> <span id="last_name"></span></p>
-<p><b>Date of Birth:</b> <span id="date_of_birth"></span></p>
-<p><b>Address:</b> <span id="address"></span></p>
-<p><b>Email:</b> <span id="email"></span></p>
-<p><b>Contact Number:</b> <span id="contact_number"></span></p>
+    <div class="container">
+        <h2>Profile</h2>
+        <div class="profile-picture">
+        <img src="assets/profile.png" alt="Profile Picture">
+        </div>
+        <div class="profile-info">
+            
+            <p><strong>First Name:</strong> <span id="first_name"></span></p>
+            <p><strong>Last Name:</strong> <span id="last_name"></span></p>
+            <p><strong>Date of Birth:</strong> <span id="date_of_birth"></span></p>
+            <p><strong>Address:</strong> <span id="address"></span></p>
+            <p><strong>Email:</strong> <span id="email"></span></p>
+            <p><strong>Contact Number:</strong> <span id="contact_number"></span></p>
+        </div>
 
-<button onclick="goBack()">Back</button>
+        <div class="buttons">
+            <button onclick="goBack()">Back</button>
+        </div>
 
-<p id="msg"></p>
+        <p id="msg"></p>
+    </div>
 
-<script src="profile.js"></script>
-
+    <script src="profile.js"></script>
 </body>
 </html>

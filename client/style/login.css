@@ -1,0 +1,121 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Page */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #222;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+}
+
+/* Login box */
+.login-container {
+    width: 100%;
+    max-width: 360px;
+    background-color: #ffffff;
+    border: 1px solid #dcdcdc;
+    padding: 24px;
+    border-radius: 8px;
+}
+
+/* Heading */
+.login-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+/* Labels */
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* Inputs */
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #bfbfbf;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* Button */
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #2d6cdf;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #1f57b8;
+}
+
+/* Message */
+#msg {
+    margin-top: 12px;
+    text-align: center;
+    font-size: 14px;
+    color: red;
+}
+
+/* Small text / links */
+.login-container p {
+    margin-top: 14px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.login-container a {
+    color: #2d6cdf;
+    text-decoration: none;
+}
+
+.login-container a:hover {
+    text-decoration: underline;
+}
+.show-password{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 12px;
+    font-size: 14px;
+}
+
+.show-password input{
+    width: auto;
+}
+
+/* Mobile responsive */
+@media (max-width: 480px) {
+    .login-container {
+        padding: 20px;
+        max-width: 100%;
+    }
+
+    .login-container h2 {
+        font-size: 22px;
+    }
+
+    input,
+    button {
+        font-size: 16px;
+    }
+}

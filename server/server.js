@@ -8,7 +8,6 @@ const PORT = 3000;
 app.use(cors());
 app.use(express.json());
 
-// Test route
 app.get("/", (req, res) => {
     res.send("MedTracker backend running...");
 });
@@ -113,6 +112,7 @@ app.post("/add-medicine", (req, res) => {
                     message: "Failed to save medicine"
                 });
             }
+        
 
             res.json({
                 success: true,
@@ -141,16 +141,136 @@ app.get("/today-medicines/:user_id", (req, res) => {
 
     db.all(sql, [user_id, today], (err, rows) => {
         if (err) {
-            console.log("Today medicines error:", err.message);
             return res.json({
                 success: false,
-                message: "Failed to fetch medicines"
+                message: "Failed to fetch today's medicines"
             });
         }
 
         res.json({
             success: true,
             medicines: rows
+        });
+    });
+});
+//Update the  Medicine if it clicks the check button
+app.put("/medicine-status/:id", (req, res) => {
+    const { id } = req.params;
+    const { status } = req.body;
+
+    const sql = `UPDATE medicines SET status = ? WHERE id = ?`;
+
+    db.run(sql, [status, id], function (err) {
+        if (err) {
+            return res.json({
+                success: false,
+                message: "Failed to update status"
+            });
+;        }
+
+        res.json({
+            success: true,
+            message: "Status updated successfully"
+        });
+    });
+})
+
+app.get("/medicine/:id", (req, res) => {
+    const { id } = req.params;
+
+    const sql = `SELECT * FROM medicines WHERE id = ?`;
+
+    db.get(sql, [id], (err, row) => {
+        if (err) {
+            return res.json({
+                success: false,
+                message: "Failed to fetch medicine"
+            });
+        }
+
+        if (!row) {
+            return res.json({
+                success: false,
+                message: "Medicine not found"
+            });
+        }
+
+        res.json({
+            success: true,
+            medicine: row
+        });
+    });
+});
+//Edit medicine
+app.put("/update-medicine/:id", (req, res) => {
+    const { id } = req.params;
+
+    const {
+        medicine_name,
+        quantity_taken,
+        dosage_per_tablet,
+        total_dosage,
+        medicine_date,
+        medicine_time,
+        status
+    } = req.body;
+
+    const sql = `
+        UPDATE medicines
+        SET medicine_name = ?,
+            quantity_taken = ?,
+            dosage_per_tablet = ?,
+            total_dosage = ?,
+            medicine_date = ?,
+            medicine_time = ?,
+            status = ?
+        WHERE id = ?
+    `;
+
+    db.run(
+        sql,
+        [
+            medicine_name,
+            quantity_taken,
+            dosage_per_tablet,
+            total_dosage,
+            medicine_date,
+            medicine_time,
+            status,
+            id
+        ],
+        function (err) {
+            if (err) {
+                return res.json({
+                    success: false,
+                    message: "Failed to update medicine"
+                });
+            }
+
+            res.json({
+                success: true,
+                message: "Medicine updated successfully"
+            });
+        }
+    );
+});
+//Delete Medicine
+app.delete("/delete-medicine/:id", (req, res) => {
+    const { id } = req.params;
+
+    const sql = `DELETE FROM medicines WHERE id = ?`;
+
+    db.run(sql, [id], function (err) {
+        if (err) {
+            return res.json({
+                success: false,
+                message: "Failed to delete medicine"
+            });
+        }
+
+        res.json({
+            success: true,
+            message: "Medicine deleted successfully"
         });
     });
 });
@@ -258,57 +378,6 @@ app.put("/profile/:id", (req, res) => {
     );
 });
 
-/* UPDATE MEDICINE STATUS */
-app.put("/medicine-status/:id", (req, res) => {
-    const { id } = req.params;
-    const { status } = req.body;
-
-    const sql = `
-        UPDATE medicines
-        SET status = ?
-        WHERE id = ?
-    `;
-
-    db.run(sql, [status, id], function (err) {
-        if (err) {
-            console.log("Update status error:", err.message);
-            return res.json({
-                success: false,
-                message: "Failed to update status"
-            });
-        }
-
-        res.json({
-            success: true,
-            message: "Status updated successfully"
-        });
-    });
-});
-
-/* DELETE MEDICINE */
-app.delete("/delete-medicine/:id", (req, res) => {
-    const { id } = req.params;
-
-    const sql = `
-        DELETE FROM medicines
-        WHERE id = ?
-    `;
-
-    db.run(sql, [id], function (err) {
-        if (err) {
-            console.log("Delete medicine error:", err.message);
-            return res.json({
-                success: false,
-                message: "Failed to delete medicine"
-            });
-        }
-
-        res.json({
-            success: true,
-            message: "Medicine deleted successfully"
-        });
-    });
-});
 
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);

@@ -19,11 +19,22 @@ fetch(`http://127.0.0.1:3000/profile/${user.id}`)
             document.getElementById("msg").innerText = data.message;
         }
     })
-    .catch(err => {
-        console.log(err);
-        document.getElementById("msg").innerText = "Server error";
-    });
+
 
 function goBack() {
     window.location.href = "dashboard.html";
+}
+
+
+function goHistory() {
+    window.location.href = "history.html";
+}
+
+function goProfile() {
+    window.location.href = "profile.html";
+}
+
+function logout() {
+    localStorage.removeItem("user");
+    window.location.href = "login.html";
 }

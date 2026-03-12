@@ -8,68 +8,105 @@ if (!user) {
 document.getElementById("welcome").innerText =
     "Welcome, " + user.first_name + "!";
 
-/* LOAD TODAY MEDICINES */
+loadTodayMedicines();
 
-fetch(`http://127.0.0.1:3000/today-medicines/${user.id}`)
+function loadTodayMedicines() {
+    fetch(`http://127.0.0.1:3000/today-medicines/${user.id}`)
+        .then(res => res.json())
+        .then(data => {
+            const table = document.getElementById("medicineTable");
+            table.innerHTML = "";
 
-.then(res => res.json())
+            if (data.success) {
+                if (data.medicines.length === 0) {
+                    table.innerHTML = "<tr><td colspan='6'>No medicines today</td></tr>";
+                }
 
-.then(data => {
-    const table = document.getElementById("medicineTable");
-    if(data.success){
-        if(data.medicines.length === 0){
-            table.innerHTML = "<tr><td colspan='5'>No medicines today</td></tr>";
+                data.medicines.forEach(med => {
+                    table.innerHTML += `
+                        <tr>
+                            <td>
+                                <input type="checkbox"
+                                    ${med.status === "Taken" ? "checked" : ""}
+                                    onchange="markTaken(${med.id}, this.checked)">
+                            </td>
+                            <td>${med.medicine_name}</td>
+                            <td>${med.dosage_per_tablet}</td>
+                            <td>${med.quantity_taken}</td>
+                            <td>${med.medicine_time}</td>
+                           <td>
+                                <div class="action-buttons">
+                                <button class="edit-btn" onclick="editMedicine(${med.id})">Edit</button>
+                                <button class="delete-btn" onclick="deleteMedicine(${med.id})">Delete</button>
+                            </div>
+</td>
+                        </tr>
+                    `;
+                });
+            } else {
+                document.getElementById("msg").innerText = data.message;
+            }
+        })
+}
+
+function markTaken(id, checked) {
+    const status = checked ? "Taken" : "Scheduled";
+
+    fetch(`http://127.0.0.1:3000/medicine-status/${id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ status: status })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (!data.success) {
+            alert(data.message);
         }
-        data.medicines.forEach(med => {
-            table.innerHTML += `
-                <tr>
-                    <td>
-                        <input type="checkbox"
-                        ${med.status === "Taken" ? "checked" : ""}>
-                    </td>
-                    <td>${med.medicine_name}</td>
+    })
+    
+}
 
-                    <td>${med.dosage_per_tablet} mg</td>
-
-                    <td>${med.quantity_taken}</td>
-
-                    <td>${med.medicine_time}</td>
-                </tr>
-            `;
-
-        });
-
-    }else{
-
-        document.getElementById("msg").innerText = data.message;
-
-    }
-
-})
-
-.catch(err => {
-
-    console.log(err);
-
-    document.getElementById("msg").innerText = "Server error";
-
-});
-
-/* NAVIGATION */
-
-function goAddMedicine(){
+function editMedicine(id) {
+    localStorage.setItem("editMedicineId", id);
     window.location.href = "add_medicine.html";
 }
 
-function goHistory(){
+function deleteMedicine(id) {
+    const answer = confirm("Delete this medicine?");
+
+    if (!answer) {
+        return;
+    }
+
+    fetch(`http://127.0.0.1:3000/delete-medicine/${id}`, {
+        method: "DELETE"
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            alert("Medicine deleted");
+            loadTodayMedicines();
+        } else {
+            alert(data.message);
+        }
+    })
+}
+
+function goAddMedicine() {
+    window.location.href = "add_medicine.html";
+}
+
+function goHistory() {
     window.location.href = "history.html";
 }
 
-function goProfile(){
+function goProfile() {
     window.location.href = "profile.html";
 }
 
-function logout(){
+function logout() {
     localStorage.removeItem("user");
     window.location.href = "login.html";
 }
