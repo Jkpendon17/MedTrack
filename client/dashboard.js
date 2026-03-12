@@ -11,7 +11,7 @@ document.getElementById("welcome").innerText =
 loadTodayMedicines();
 
 function loadTodayMedicines() {
-    fetch(`http://127.0.0.1:3000/today-medicines/${user.id}`)
+    fetch("https://medtrack-api.onrender.com/today-medicines/" + user_id)
         .then(res => res.json())
         .then(data => {
             const table = document.getElementById("medicineTable");
@@ -52,7 +52,7 @@ function loadTodayMedicines() {
 function markTaken(id, checked) {
     const status = checked ? "Taken" : "Scheduled";
 
-    fetch(`http://127.0.0.1:3000/medicine-status/${id}`, {
+    fetch("https://medtrack-api.onrender.com/medicine-status/" + id, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
@@ -108,5 +108,5 @@ function goProfile() {
 
 function logout() {
     localStorage.removeItem("user");
-    window.location.href = "login.html";
+    window.location.href = "index.html";
 }

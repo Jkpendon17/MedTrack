@@ -4,7 +4,7 @@ if (!user) {
     alert("No user logged in");
 }
 
-fetch(`http://127.0.0.1:3000/history/${user.id}`)
+fetch("https://medtrack-api.onrender.com/history/" + user_id)
     .then(res => res.json())
     .then(data => {
 
@@ -51,5 +51,5 @@ function goProfile(){
 
 function logout(){
     localStorage.removeItem("user");
-    window.location.href = "login.html";
+    window.location.href = "index.html";
 }

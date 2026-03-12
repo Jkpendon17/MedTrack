@@ -6,7 +6,7 @@ form.addEventListener("submit", function(e){
     const email = document.getElementById("email").value;
     const pass = document.getElementById("password").value;
 
-    fetch("http://localhost:3000/login", {
+    fetch("https://medtrack-api.onrender.com/login", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

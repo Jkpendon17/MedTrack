@@ -5,7 +5,7 @@ if (!user) {
     window.location.href = "login.html";
 }
 
-fetch(`http://127.0.0.1:3000/profile/${user.id}`)
+fetch(`https://medtrack-api.onrender.com/profile/${user_id}`)
     .then(res => res.json())
     .then(data => {
         if (data.success) {
@@ -36,5 +36,5 @@ function goProfile() {
 
 function logout() {
     localStorage.removeItem("user");
-    window.location.href = "login.html";
+    window.location.href = "index.html";
 }

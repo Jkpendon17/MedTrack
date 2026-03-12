@@ -14,7 +14,7 @@ form.addEventListener("submit", async function (e) {
   };
 
   try {
-    const res = await fetch("http://localhost:3000/register", {
+    const res = await fetch("https://medtrack-api.onrender.com/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)
@@ -24,7 +24,7 @@ form.addEventListener("submit", async function (e) {
 
     if (result.success) {
       alert("Registration successful!");
-      window.location.href = "login.html";
+      window.location.href = "index.html";
     } else {
       msg.innerText = result.message;
     }

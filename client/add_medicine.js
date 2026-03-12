@@ -2,7 +2,7 @@ const user = JSON.parse(localStorage.getItem("user"));
 const editMedicineId = localStorage.getItem("editMedicineId");
 
 if (editMedicineId) {
-    fetch(`http://127.0.0.1:3000/medicine/${editMedicineId}`)
+    fetch(`https://medtrack-api.onrender.com/medicine/${editMedicineId}`)
         .then(res => res.json())
         .then(data => {
             if (data.success) {
@@ -41,7 +41,7 @@ function saveMedicine() {
     };
 
     if (editMedicineId) {
-        fetch(`http://127.0.0.1:3000/update-medicine/${editMedicineId}`, {
+        fetch(`https://medtrack-api.onrender.com/update-medicine/${editMedicineId}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -58,7 +58,7 @@ function saveMedicine() {
             }
         });
     } else {
-        fetch("http://127.0.0.1:3000/add-medicine", {
+        fetch("https://medtrack-api.onrender.com/add-medicine", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -80,4 +80,20 @@ function saveMedicine() {
 function goBack() {
     localStorage.removeItem("editMedicineId");
     window.location.href = "dashboard.html";
+}
+function goAddMedicine() {
+    window.location.href = "add_medicine.html";
+}
+
+function goHistory() {
+    window.location.href = "history.html";
+}
+
+function goProfile() {
+    window.location.href = "profile.html";
+}
+
+function logout() {
+    localStorage.removeItem("user");
+    window.location.href = "index.html";
 }
