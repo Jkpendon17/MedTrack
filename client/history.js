@@ -1,8 +1,4 @@
-const user = JSON.parse(localStorage.getItem("user"));
 
-if (!user) {
-    alert("No user logged in");
-}
 
 fetch("https://medtrack-api.onrender.com/history/" + user_id)
     .then(res => res.json())
