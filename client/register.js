@@ -30,7 +30,7 @@ form.addEventListener("submit", function(e){
     .then(data => {
         if (data.success) {
             alert("Registration successful");
-            window.location.href = "index.html"; // go back to login
+            window.location.href = "login.html"; 
         } else {
             document.getElementById("msg").innerText = data.message;
         }

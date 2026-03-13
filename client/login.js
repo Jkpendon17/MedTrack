@@ -22,7 +22,7 @@ form.addEventListener("submit", function(e){
         if (data.success) {
             alert("Login successful");
             sessionStorage.setItem("user_id", data.user_id);
-            window.location.href = "dashboard.html";
+            window.location.href = "index.html";
         } else {
             document.getElementById("msg").innerText = data.message;
         }
