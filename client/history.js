@@ -35,7 +35,7 @@ fetch("https://medtrack-api.onrender.com/history/" + user_id)
     });
 
 function goBack() {
-    window.location.href = "dashboard.html";
+    window.location.href = "index.html";
 }
 /* NAVIGATION */
 
@@ -51,5 +51,5 @@ function goProfile(){
 
 function logout(){
     localStorage.removeItem("user");
-    window.location.href = "index.html";
+    window.location.href = "login.html";
 }
