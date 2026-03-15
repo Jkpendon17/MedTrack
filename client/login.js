@@ -9,7 +9,7 @@ document.getElementById("loginForm").addEventListener("submit", function(e){
 });
 
 function loginBtn(){
-    window.location.href ="index.html";
+    window.location.href = "index.html";
 }
 
 
