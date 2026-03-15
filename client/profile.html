@@ -3,43 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
     <link rel="stylesheet" href="style/profile.css">
-    <title>Document</title>
 </head>
+
+<body>
+
 <header>
     <h1>MedTrack</h1>
-     <div class="nav-buttons">
+
+    <div class="nav-buttons">
         <button onclick="goDashboard()">Dashboard</button>
         <button onclick="goHistory()">History</button>
         <button onclick="goProfile()">Profile</button>
         <button onclick="logout()">Logout</button>
     </div>
 </header>
-<body>
-    <h1>Profile</h1>
-    <img src="/client/assets/profile.png" alt="profile" style="width: 100px;height: 100px;">
 
-    <h1>MedTrack</h1>
+<main class="profile-container">
 
-<h2>Profile</h2>
+    <h2>Profile</h2>
 
-<p><b>First Name:</b> <span id="first_name"></span></p>
+    <div class="profile-picture">
+        <img src="assets/profile.png" alt="Profile Picture">
+    </div>
 
-<p><b>Last Name:</b> <span id="last_name"></span></p>
+    <div class="profile-info">
+        <p><b>First Name:</b> <span id="first_name"></span></p>
+        <p><b>Last Name:</b> <span id="last_name"></span></p>
+        <p><b>Date of Birth:</b> <span id="date_of_birth"></span></p>
+        <p><b>Address:</b> <span id="address"></span></p>
+        <p><b>Email:</b> <span id="email"></span></p>
+        <p><b>Contact Number:</b> <span id="contact_number"></span></p>
+    </div>
 
-<p><b>Date of Birth:</b> <span id="date_of_birth"></span></p>
+    <button class="back-btn" onclick="goBack()">Back</button>
 
-<p><b>Address:</b> <span id="address"></span></p>
-
-<p><b>Email:</b> <span id="email"></span></p>
-
-<p><b>Contact Number:</b> <span id="contact_number"></span></p>
-
-
-<button onclick="goBack()">Back</button>
-
-<p id="msg"></p>
+</main>
 
 <script src="profile.js"></script>
+
 </body>
 </html>

@@ -1,34 +1,40 @@
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
 body{
-    font-family: Arial, sans-serif;
-    background:#f5f5f5;
-    color:#222;
+font-family:Arial, sans-serif;
+background:#f5f5f5;
+color:#222;
 }
 
-/* Navigation */
+/* Header */
 
-.nav{
+header{
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:15px;
 background:#2d6cdf;
 color:white;
+padding:15px 20px;
 }
+
+header h1{
+font-size:22px;
+}
+
+/* Navigation buttons */
 
 .nav-buttons button{
 margin-left:8px;
-padding:6px 10px;
+padding:8px 12px;
 border:none;
 background:white;
 color:#2d6cdf;
-cursor:pointer;
 border-radius:4px;
+cursor:pointer;
 font-size:14px;
 }
 
@@ -36,73 +42,68 @@ font-size:14px;
 background:#e4e4e4;
 }
 
+/* Profile container */
 
-.container{
-    max-width:700px;
-    margin:30px auto;
-    background:white;
-    padding:20px;
-    border-radius:6px;
+.profile-container{
+max-width:500px;
+margin:40px auto;
+background:white;
+padding:25px;
+border-radius:8px;
+text-align:center;
 }
 
-.profile-picture{
-display:flex;
-justify-content:center;
-margin-bottom:20px;
-}
+/* Profile image */
 
 .profile-picture img{
-width:120px;
-height:120px;
+width:110px;
+height:110px;
 border-radius:50%;
 object-fit:cover;
+margin-bottom:20px;
 border:3px solid #2d6cdf;
 }
-.container h2{
-    margin-bottom:20px;
+
+/* Profile text */
+
+.profile-info{
+text-align:left;
+margin-top:10px;
 }
 
 .profile-info p{
-    margin-bottom:14px;
-    font-size:15px;
-    line-height:1.5;
+margin-bottom:10px;
+font-size:14px;
 }
 
-.buttons{
-    margin-top:20px;
+/* Back button */
+
+.back-btn{
+margin-top:20px;
+padding:10px 14px;
+border:none;
+background:#2d6cdf;
+color:white;
+border-radius:4px;
+cursor:pointer;
 }
 
-.buttons button{
-    padding:10px 14px;
-    border:none;
-    background:#2d6cdf;
-    color:white;
-    border-radius:4px;
-    cursor:pointer;
+.back-btn:hover{
+background:#1f57b8;
 }
 
-.buttons button:hover{
-    background:#1f57b8;
+/* Mobile */
+
+@media(max-width:600px){
+
+header{
+flex-direction:column;
+align-items:flex-start;
+gap:10px;
 }
 
-#msg{
-    margin-top:15px;
-    color:red;
-    font-size:14px;
+.profile-container{
+margin:20px;
 }
 
-@media (max-width: 768px){
-    .nav{
-        flex-direction:column;
-        align-items:flex-start;
-    }
-
-    .nav-buttons{
-        margin-top:10px;
-    }
-
-    .container{
-        margin:10px;
-        padding:15px;
-    }
 }
