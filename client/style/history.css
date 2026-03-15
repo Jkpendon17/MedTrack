@@ -24,25 +24,30 @@ header h1 {
     font-size: 22px;
 }
 
-#nav_menu ul {
-    list-style: none;
+/* Navigation */
+
+.nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px;
+background:#2d6cdf;
+color:white;
 }
 
-#nav_menu li {
-    display: flex;
-    gap: 12px;
+.nav-buttons button{
+margin-left:8px;
+padding:6px 10px;
+border:none;
+background:white;
+color:#2d6cdf;
+cursor:pointer;
+border-radius:4px;
+font-size:14px;
 }
 
-#nav_menu a {
-    color: white;
-    text-decoration: none;
-    font-size: 14px;
-    padding: 6px 10px;
-    border-radius: 4px;
-}
-
-#nav_menu a:hover {
-    background: rgba(255, 255, 255, 0.2);
+.nav-buttons button:hover{
+background:#e4e4e4;
 }
 
 /* Main container */
