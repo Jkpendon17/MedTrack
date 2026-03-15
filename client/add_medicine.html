@@ -3,45 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Medicine</title>
     <link rel="stylesheet" href="style/add_medicine.css">
-    <title>Document</title>
 </head>
 <body>
-<header class="nav">
-    <h2>MedTrack</h2>
 
-    <div class="nav-buttons">
-        <button onclick="goDashboard()">Dashboard</button>
-        <button onclick="goHistory()">History</button>
-        <button onclick="goProfile()">Profile</button>
-        <button onclick="logout()">Logout</button>
-    </div>
-</header>
-<h2>Add Medicine Intake</h2>
+    <header class="nav">
+        <h2>MedTrack</h2>
 
-<label>Medicine Name</label><br>
-<input id="medicine_name"><br><br>
+        <div class="nav-buttons">
+            <button type="button" onclick="goDashboard()">Dashboard</button>
+            <button type="button" onclick="goHistory()">History</button>
+            <button type="button" onclick="goProfile()">Profile</button>
+            <button type="button" onclick="logout()">Logout</button>
+        </div>
+    </header>
 
-<label>Quantity</label><br>
-<input id="quantity_taken" type="number"><br><br>
+    <main class="form-container">
+        <h2>Add Medicine Intake</h2>
 
-<label>Dosage per tablet</label><br>
-<input id="dosage_per_tablet" type="number"><br><br>
+        <form id="medicineForm">
+            <label for="medicine_name">Medicine Name</label>
+            <input id="medicine_name" type="text" required>
 
-<label>Total Dosage</label><br>
-<input id="total_dosage" readonly><br><br>
+            <label for="quantity_taken">Quantity</label>
+            <input id="quantity_taken" type="number" required>
 
-<label>Date</label><br>
-<input id="medicine_date" type="date"><br><br>
+            <label for="dosage_per_tablet">Dosage per tablet</label>
+            <input id="dosage_per_tablet" type="number" required>
 
-<label>Time</label><br>
-<input id="medicine_time" type="time"><br><br>
+            <label for="total_dosage">Total Dosage</label>
+            <input id="total_dosage" type="number" readonly>
 
-<button onclick="saveMedicine()">Save</button>
-<button onclick="goBack()">Back</button>
+            <label for="medicine_date">Date</label>
+            <input id="medicine_date" type="date" required>
 
-<p id="msg"></p>
+            <label for="medicine_time">Time</label>
+            <input id="medicine_time" type="time" required>
 
-<script src="add_medicine.js"></script>
+            <div class="form-buttons">
+                <button type="button" onclick="saveMedicine()">Save</button>
+                <button type="button" class="back-btn" onclick="goBack()">Back</button>
+            </div>
+        </form>
+
+        <p id="msg"></p>
+    </main>
+
+    <script src="add_medicine.js"></script>
 </body>
 </html>
