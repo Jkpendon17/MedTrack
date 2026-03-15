@@ -17,7 +17,7 @@ body {
 
 .register-container {
     width: 100%;
-    max-width: 380px;
+    max-width: 420px;
     background-color: #ffffff;
     border: 1px solid #dcdcdc;
     padding: 24px;
@@ -30,20 +30,47 @@ body {
     font-size: 24px;
 }
 
-label {
+.register-container h3 {
+    margin: 16px 0 12px;
+    font-size: 16px;
+    color: #333;
+}
+
+.register-container label {
     display: block;
     margin-bottom: 6px;
     font-size: 14px;
     font-weight: bold;
 }
 
-input {
+.register-container input[type="text"],
+.register-container input[type="email"],
+.register-container input[type="password"],
+.register-container input[type="date"] {
     width: 100%;
     padding: 10px;
     margin-bottom: 16px;
     border: 1px solid #bfbfbf;
     border-radius: 4px;
     font-size: 14px;
+}
+
+.show-password {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.show-password input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+}
+
+.show-password label {
+    margin: 0;
+    font-size: 14px;
+    font-weight: normal;
 }
 
 button {
@@ -61,13 +88,6 @@ button:hover {
     background-color: #1f57b8;
 }
 
-#msg {
-    margin-top: 12px;
-    text-align: center;
-    font-size: 14px;
-    color: red;
-}
-
 .register-container p {
     margin-top: 14px;
     text-align: center;
@@ -83,34 +103,20 @@ button:hover {
     text-decoration: underline;
 }
 
-.show-password {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin-bottom: 16px;
-}
-
-.show-password input {
-    width: auto;
-    margin-bottom: 0;
-}
-
-.show-password label {
-    margin-bottom: 0;
-    font-weight: normal;
-}
-
 @media (max-width: 480px) {
     .register-container {
-        max-width: 100%;
         padding: 20px;
+        max-width: 100%;
     }
 
     .register-container h2 {
         font-size: 22px;
     }
 
-    input,
+    .register-container input[type="text"],
+    .register-container input[type="email"],
+    .register-container input[type="password"],
+    .register-container input[type="date"],
     button {
         font-size: 16px;
     }
