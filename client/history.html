@@ -3,24 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicine History</title>
     <link rel="stylesheet" href="style/history.css">
-    <title>Document</title>
 </head>
-<header>
-    <h1>MedTrack</h1>
-    <nav id="nav_menu">
-       <ul>
-        <li>
-            <a href="/client/index.html">Home</a>
-            <a href="/client/history.html">History</a>
-            <a href="/client/profile.html">Profile</a>
-            <a href="/client/login.html">Logout</a>
-        </li>
-       </ul>
-    </nav>
-</header>
 <body>
-    Medicine History
+
+    <header>
+        <h1>MedTrack</h1>
+        <nav id="nav_menu">
+            <ul>
+                <li>
+                    <a href="/client/index.html">Home</a>
+                    <a href="/client/history.html">History</a>
+                    <a href="/client/profile.html">Profile</a>
+                    <a href="/client/login.html">Logout</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="history-container">
+        <h2>Medicine History</h2>
+
+        <table class="history-table">
+            <thead>
+                <tr>
+                    <th>Medicine Name</th>
+                    <th>Quantity</th>
+                    <th>Dosage</th>
+                    <th>Total Dosage</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Paracetamol</td>
+                    <td>2</td>
+                    <td>500 mg</td>
+                    <td>1000 mg</td>
+                    <td>2026-03-15</td>
+                    <td>08:00 AM</td>
+                    <td>Taken</td>
+                </tr>
+                <tr>
+                    <td>Amoxicillin</td>
+                    <td>1</td>
+                    <td>250 mg</td>
+                    <td>250 mg</td>
+                    <td>2026-03-15</td>
+                    <td>01:00 PM</td>
+                    <td>Pending</td>
+                </tr>
+                <tr>
+                    <td>Vitamin C</td>
+                    <td>1</td>
+                    <td>500 mg</td>
+                    <td>500 mg</td>
+                    <td>2026-03-14</td>
+                    <td>07:00 PM</td>
+                    <td>Taken</td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
 
     <script src="history.js"></script>
 </body>
