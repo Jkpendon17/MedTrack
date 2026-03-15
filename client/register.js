@@ -6,6 +6,10 @@ form.addEventListener("submit", function(e){
     window.location.href = "index.html"; 
 });
 
+function logBtn(){
+    window.location.href = "login.html";
+}
+
 
 function togglePassword() {
     const password = document.getElementById("password");
