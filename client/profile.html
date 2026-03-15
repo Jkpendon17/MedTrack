@@ -8,16 +8,12 @@
 </head>
 <header>
     <h1>MedTrack</h1>
-    <nav id="nav_menu">
-       <ul>
-        <li>
-            <a href="/client/dashboard.html">Home</a>
-            <a href="/client/history.html">History</a>
-            <a href="/client/profile.html">Profile</a>
-            <a href="/client/login.html">Logout</a>
-        </li>
-       </ul>
-    </nav>
+     <div class="nav-buttons">
+        <button onclick="goDashboard()">Dashboard</button>
+        <button onclick="goHistory()">History</button>
+        <button onclick="goProfile()">Profile</button>
+        <button onclick="logout()">Logout</button>
+    </div>
 </header>
 <body>
     <h1>Profile</h1>
