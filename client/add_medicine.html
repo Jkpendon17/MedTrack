@@ -30,10 +30,10 @@
             <input id="quantity_taken" type="number" required>
 
             <label for="dosage_per_tablet">Dosage per tablet</label>
-            <input id="dosage_per_tablet" type="number" required>
+            <input id="dosage_per_tablet" type="number" oninput="checkDosage()" required>
 
             <label for="total_dosage">Total Dosage</label>
-            <input id="total_dosage" type="number" readonly>
+            <input id="total_dosage" oninput="checkDosage()"  type="number" readonly>
 
             <label for="medicine_date">Date</label>
             <input id="medicine_date" type="date" required>
