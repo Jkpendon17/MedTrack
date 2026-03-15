@@ -1,28 +1,21 @@
 {
-  "name": "medtrack",
+  "name": "server",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Jkpendon17/MedTrack.git"
+    "dev":"nodemon server"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/Jkpendon17/MedTrack/issues"
-  },
-  "homepage": "https://github.com/Jkpendon17/MedTrack#readme",
   "description": "",
   "dependencies": {
     "cors": "^2.8.6",
     "express": "^5.2.1",
-    "sqlite3": "^5.1.7"
+    "mysql2": "^3.19.0",
+    "sqlite3": "^5.0.2"
   },
   "devDependencies": {
     "nodemon": "^3.1.14"

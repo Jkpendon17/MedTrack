@@ -1,25 +1,7 @@
 
-
-fetch(`https://medtrack-api.onrender.com/profile/${user_id}`)
-    .then(res => res.json())
-    .then(data => {
-        if (data.success) {
-            document.getElementById("first_name").innerText = data.profile.first_name;
-            document.getElementById("last_name").innerText = data.profile.last_name;
-            document.getElementById("date_of_birth").innerText = data.profile.date_of_birth;
-            document.getElementById("address").innerText = data.profile.address;
-            document.getElementById("email").innerText = data.profile.email;
-            document.getElementById("contact_number").innerText = data.profile.contact_number;
-        } else {
-            document.getElementById("msg").innerText = data.message;
-        }
-    })
-
-
 function goBack() {
     window.location.href = "index.html";
 }
-
 
 function goHistory() {
     window.location.href = "history.html";
@@ -30,6 +12,5 @@ function goProfile() {
 }
 
 function logout() {
-    localStorage.removeItem("user");
     window.location.href = "login.html";
 }

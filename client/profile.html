@@ -1,43 +1,48 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
-    <link rel="stylesheet" href="style/profile.css">
+    <title>Document</title>
 </head>
+<header>
+    <h1>MedTrack</h1>
+    <nav id="nav_menu">
+       <ul>
+        <li>
+            <a href="/client/dashboard.html">Home</a>
+            <a href="/client/history.html">History</a>
+            <a href="/client/profile.html">Profile</a>
+            <a href="/client/login.html">Logout</a>
+        </li>
+       </ul>
+    </nav>
+</header>
 <body>
+    <h1>Profile</h1>
+    <img src="/client/assets/profile.png" alt="profile" style="width: 100px;height: 100px;">
 
-    <header class="nav">
-        <h2>MedTrack</h2>
-        <div class="nav-buttons">
-            <button onclick="goHistory()">History</button>
-            <button onclick="goProfile()">Profile</button>
-            <button onclick="logout()">Logout</button>
-        </div>
-    </header>
+    <h1>MedTrack</h1>
 
-    <div class="container">
-        <h2>Profile</h2>
-        <div class="profile-picture">
-        <img src="assets/profile.png" alt="Profile Picture">
-        </div>
-        <div class="profile-info">
-            
-            <p><strong>First Name:</strong> <span id="first_name"></span></p>
-            <p><strong>Last Name:</strong> <span id="last_name"></span></p>
-            <p><strong>Date of Birth:</strong> <span id="date_of_birth"></span></p>
-            <p><strong>Address:</strong> <span id="address"></span></p>
-            <p><strong>Email:</strong> <span id="email"></span></p>
-            <p><strong>Contact Number:</strong> <span id="contact_number"></span></p>
-        </div>
+<h2>Profile</h2>
 
-        <div class="buttons">
-            <button onclick="goBack()">Back</button>
-        </div>
+<p><b>First Name:</b> <span id="first_name"></span></p>
 
-        <p id="msg"></p>
-    </div>
+<p><b>Last Name:</b> <span id="last_name"></span></p>
 
-    <script src="profile.js"></script>
+<p><b>Date of Birth:</b> <span id="date_of_birth"></span></p>
+
+<p><b>Address:</b> <span id="address"></span></p>
+
+<p><b>Email:</b> <span id="email"></span></p>
+
+<p><b>Contact Number:</b> <span id="contact_number"></span></p>
+
+
+<button onclick="goBack()">Back</button>
+
+<p id="msg"></p>
+
+<script src="js/profile.js"></script>
 </body>
 </html>

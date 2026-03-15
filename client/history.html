@@ -1,46 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Medicine History</title>
-    <link rel="stylesheet" href="style/history.css">
+    <title>Document</title>
 </head>
+<header>
+    <h1>MedTrack</h1>
+    <nav id="nav_menu">
+       <ul>
+        <li>
+            <a href="/client/index.html">Home</a>
+            <a href="/client/history.html">History</a>
+            <a href="/client/profile.html">Profile</a>
+            <a href="/client/login.html">Logout</a>
+        </li>
+       </ul>
+    </nav>
+</header>
 <body>
-
-    <header class="nav">
-        <h2>MedTrack</h2>
-        <div class="nav-buttons">
-            <button onclick="goHistory()">History</button>
-            <button onclick="goProfile()">Profile</button>
-            <button onclick="logout()">Logout</button>
-        </div>
-    </header>
-
-    <div class="container">
-        <h2>Medicine History</h2>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Medicine</th>
-                    <th>Quantity</th>
-                    <th>Dosage</th>
-                    <th>Total</th>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody id="historyTable"></tbody>
-        </table>
-
-        <div class="buttons">
-            <button onclick="goBack()">Back</button>
-        </div>
-
-        <p id="msg"></p>
-    </div>
-
-    <script src="history.js"></script>
+    Medicine History
 </body>
 </html>
