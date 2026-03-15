@@ -87,23 +87,34 @@ input {
     flex: 1;
     padding: 10px;
     border: none;
-    background: #2d6cdf;
-    color: white;
     border-radius: 4px;
     font-size: 15px;
     cursor: pointer;
 }
 
+
 .form-buttons button:hover {
     background: #1f57b8;
 }
 
-.back-btn {
-    background: #6c757d;
+/* Primary button (Save) */
+.primary-btn {
+    background-color: #2d6cdf;
+    color: white;
 }
 
-.back-btn:hover {
-    background: #565e64;
+.primary-btn:hover {
+    background-color: #1f57b8;
+}
+
+/* Secondary button (Back) */
+.secondary-btn {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+.secondary-btn:hover {
+    background-color: #d5d5d5;
 }
 
 #msg {

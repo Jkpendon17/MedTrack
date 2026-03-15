@@ -3,6 +3,9 @@ function goBack() {
     window.location.href = "index.html";
 }
 
+function goDashboard() {
+    window.location.href = "index.html";
+}
 function goHistory() {
     window.location.href = "history.html";
 }
