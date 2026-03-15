@@ -4,8 +4,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dashboard</title>
 <link rel="stylesheet" href="style/dashboard.css">
-<link rel="icon" href="./favicon.ico">
-<link rel="icon" type="image/png" href="./app-icon.png">
+<link rel="icon" href="./assets/favico.ico">
+<link rel="icon" type="image/png" href="./assets/app-icon.png">
 </head>
 
 <body>
@@ -50,5 +50,13 @@
 
 <script src="dashboard.js"></script>
 
+
+<script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("/service-worker.js")
+      .then(() => console.log("Service Worker registered"))
+      .catch(error => console.log("Service Worker error:", error));
+  }
+</script>
 </body>
 </html>
