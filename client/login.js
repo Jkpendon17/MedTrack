@@ -3,14 +3,14 @@ document.getElementById("loginForm").addEventListener("submit", function(e){
 
     const email = document.getElementById("email").value;
     const pass = document.getElementById("pass").value;
-
-    console.log(email, pass);
-
-});
-
+    
 function loginBtn(){
     window.location.href ="index.html";
 }
+
+});
+
+
 
 function togglePassword() {
     const password = document.getElementById("pass");
