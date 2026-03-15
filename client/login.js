@@ -1,3 +1,3 @@
-document.getElementById("loginBtn").addEventListener("click",()=>{
-    window.location.href="index.html";
-});
+function loginBtn(){
+    window.location.href ="index.html";
+}
