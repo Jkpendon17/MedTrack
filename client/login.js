@@ -8,7 +8,7 @@ form.addEventListener("submit", function (e) {
 
 
     // temporary
-    if (email === "test@gmail.com " && pass === "1234") {
+    if (email ==="test@gmail.com" && password === "1234") {
         alert("Login successfully");
         window.location.href = "index.html";
     } else {
