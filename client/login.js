@@ -1,16 +1,20 @@
-document.getElementById("loginForm").addEventListener("submit", function(e){
+const form = document.getElementById("loginform");
+
+form.addEventListener("submit", function (e) {
     e.preventDefault();
-
     const email = document.getElementById("email").value;
-    const pass = document.getElementById("pass").value;
+    const password = document.getElementById("password").value;
 
 
-
+    // temporary
+    if (email === "test@gmail.com " && password === "1234") {
+        alert("Login successfully");
+        window.location.href = "dashboard.html";
+    } else {
+        alert("Login failed");
+    }
 });
 
-function loginBtn(){
-    window.location.href = "index.html";
-}
 
 
 function togglePassword() {
