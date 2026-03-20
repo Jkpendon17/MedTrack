@@ -6,7 +6,6 @@ const user = savedUser ? JSON.parse(savedUser) : null;
 if (!user || !user.id) {
     alert("No logged in user found. Please log in again.");
     window.location.href = "index.html";
-    
 }
 
 function checkDosage() {
@@ -16,23 +15,37 @@ function checkDosage() {
 
     document.getElementById("total_dosage").value = total;
 
+    const msg = document.getElementById("msg");
     if (total > 2000) {
-        document.getElementById("msg").innerText = "Warning: Overdose! Cannot save.";
+        msg.innerText = "Warning: Overdose! Cannot save.";
+        return false;
     } else {
-        document.getElementById("msg").innerText = "";
+        msg.innerText = "";
+        return true;
     }
 }
 
 function saveMedicine() {
-
-    const medicine_name = document.getElementById("medicine_name").value;
+    const medicine_name = document.getElementById("medicine_name").value.trim();
     const quantity_taken = document.getElementById("quantity_taken").value;
     const dosage_per_tablet = document.getElementById("dosage_per_tablet").value;
     const total_dosage = document.getElementById("total_dosage").value;
-    const medicine_date = document.getElementById("medicine_date").value;
+    let medicine_date = document.getElementById("medicine_date").value;
     const medicine_time = document.getElementById("medicine_time").value;
+    const msg = document.getElementById("msg");
 
+    if (!medicine_name || !quantity_taken || !dosage_per_tablet || !medicine_time) {
+        msg.innerText = "Please fill in all required fields.";
+        return;
+    }
 
+    if (!checkDosage()) {
+        return;
+    }
+
+    if (!medicine_date) {
+        medicine_date = new Date().toISOString().split("T")[0];
+    }
 
     fetch(`${API_URL}/add-medicine`, {
         method: "POST",
@@ -50,19 +63,21 @@ function saveMedicine() {
             status: "Pending"
         })
     })
-    .then(res => res.json())
-    .then(data => {
-        if (data.success) {
-            alert("Medicine added successfully!");
-            window.location.href = "dashboard.html";
-        } else {
-            document.getElementById("msg").innerText = data.message;
-        }
-    })
-    .catch(err => {
-        console.log(err);
-        alert("Error saving medicine");
-    });
+        .then(res => res.json())
+        .then(data => {
+            console.log("Add medicine response:", data);
+
+            if (data.success) {
+                alert("Medicine added successfully!");
+                window.location.href = "dashboard.html";
+            } else {
+                msg.innerText = data.message || "Failed to save medicine.";
+            }
+        })
+        .catch(err => {
+            console.log(err);
+            alert("Error saving medicine");
+        });
 }
 
 function goBack() {
