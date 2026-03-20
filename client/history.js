@@ -1,5 +1,5 @@
 
-const API_URL = "https://medtrack-api.onrender.com";
+const API_URL = "https://medtrack-api-8puh.onrender.com";
 
 function loadHistory() {
     const user = JSON.parse(localStorage.getItem("user"));

@@ -1,4 +1,4 @@
-const API_URL = "https://medtrack-api.onrender.com";
+const API_URL = "https://medtrack-api-8puh.onrender.com";
 
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("registerForm");
