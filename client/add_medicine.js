@@ -54,7 +54,7 @@ function saveMedicine() {
     .then(data => {
         if (data.success) {
             alert("Medicine added successfully!");
-            window.location.href = "index.html";
+            window.location.href = "dashboard.html";
         } else {
             document.getElementById("msg").innerText = data.message;
         }
