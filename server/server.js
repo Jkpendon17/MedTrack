@@ -5,7 +5,7 @@ const db = require("./database");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-aapp.use(cors({
+app.use(cors({
   origin: [
     "https://med-track-demo.vercel.app",
     "http://127.0.0.1:5500",
