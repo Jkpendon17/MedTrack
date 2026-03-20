@@ -65,7 +65,7 @@ function updateMedicine() {
         if (data.success) {
             alert("Medicine updated successfully");
             localStorage.removeItem("editMedicineId");
-            window.location.href = "index.html";
+            window.location.href = "dashboard.html";
         } else {
             document.getElementById("msg").innerText = data.message;
         }
