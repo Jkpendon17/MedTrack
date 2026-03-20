@@ -21,7 +21,7 @@ if (!user || !user.id) {
 document.getElementById("welcome").innerText = "Welcome to user!";
 
 function loadMedicines() {
-    fetch(`http://localhost:3000/today-medicines/${user.id}`)
+   fetch(`${API_URL}/today-medicines/${user.id}`)
         .then(res => res.json())
         .then(data => {
             const table = document.getElementById("medicineTable");
@@ -82,6 +82,9 @@ function updateStatus(id, checked) {
         console.log(err);
         alert("Server error");
     });
+}
+function goAddMedicine() {
+    window.location.href = "add_medicine.html";
 }
 
 function editMedicine(id) {
