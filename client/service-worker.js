@@ -2,8 +2,8 @@ const CACHE_NAME = "medtrack-v1";
 
 const FILES_TO_CACHE = [
     "./",
+    "./dashboard.html",
     "./index.html",
-    "./login.html",
     "./register.html",
     "./add_medicine.html",
     "./history.html",

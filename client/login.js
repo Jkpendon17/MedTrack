@@ -18,7 +18,7 @@ document.getElementById("loginForm").addEventListener("submit", function(e) {
         if (data.success) {
             localStorage.setItem("user", JSON.stringify(data.user));
             alert("Login successful");
-            window.location.href = "index.html";
+            window.location.href = "dashboard.html";
         } else {
             document.getElementById("loginMessage").innerText = data.message;
         }

@@ -23,9 +23,15 @@ function loadHistory() {
 }
 
 loadHistory();
-function goDashboard() {
-    window.location.href = "index.html";
+
+function goBack() {
+    window.location.href = "dashboard.html";
 }
+
+function goDashboard() {
+    window.location.href = "dashboard.html";
+}
+
 function goHistory() {
     window.location.href = "history.html";
 }
@@ -35,5 +41,6 @@ function goProfile() {
 }
 
 function logout() {
-    window.location.href = "login.html";
+    localStorage.removeItem("user");
+    window.location.href = "index.html";
 }

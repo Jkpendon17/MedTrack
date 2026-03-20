@@ -77,7 +77,7 @@ function updateMedicine() {
 }
 
 function goBack() {
-    window.location.href = "index.html";
+    window.location.href = "dashboard.html";
 }
 
 loadMedicine();

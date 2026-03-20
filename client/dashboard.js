@@ -110,9 +110,12 @@ function deleteMedicine(id) {
         alert("Failed to delete medicine");
     });
 }
+function goBack() {
+    window.location.href = "dashboard.html";
+}
 
 function goDashboard() {
-    window.location.href = "index.html";
+    window.location.href = "dashboard.html";
 }
 
 function goHistory() {
@@ -123,13 +126,9 @@ function goProfile() {
     window.location.href = "profile.html";
 }
 
-function goAddMedicine() {
-    window.location.href = "add_medicine.html";
-}
-
 function logout() {
     localStorage.removeItem("user");
-    window.location.href = "login.html";
+    window.location.href = "index.html";
 }
 
 loadMedicines();

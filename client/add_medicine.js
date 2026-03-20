@@ -5,7 +5,7 @@ const user = savedUser ? JSON.parse(savedUser) : null;
 
 if (!user || !user.id) {
     alert("No logged in user found. Please log in again.");
-    window.location.href = "login.html";
+    window.location.href = "index.html";
     
 }
 
@@ -66,11 +66,11 @@ function saveMedicine() {
 }
 
 function goBack() {
-    window.location.href = "index.html";
+    window.location.href = "dashboard.html";
 }
 
 function goDashboard() {
-    window.location.href = "index.html";
+    window.location.href = "dashboard.html";
 }
 
 function goHistory() {
@@ -83,5 +83,5 @@ function goProfile() {
 
 function logout() {
     localStorage.removeItem("user");
-    window.location.href = "login.html";
+    window.location.href = "index.html";
 }
