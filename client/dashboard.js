@@ -1,7 +1,6 @@
 const API_URL = "https://medtrack-api-8puh.onrender.com";
 
 const savedUser = localStorage.getItem("user");
-
 let user = null;
 
 if (savedUser && savedUser !== "undefined" && savedUser !== "null") {
@@ -15,19 +14,26 @@ if (savedUser && savedUser !== "undefined" && savedUser !== "null") {
 
 if (!user || !user.id) {
     alert("No logged in user found. Please log in again.");
-    window.location.href = "login.html";
+    window.location.href = "index.html";
 }
 
-document.getElementById("welcome").innerText = "Welcome to user!";
+const welcomeText = document.getElementById("welcome");
+if (welcomeText) {
+    welcomeText.innerText = `Welcome, ${user.first_name || "User"}!`;
+}
 
 function loadMedicines() {
-   fetch(`${API_URL}/today-medicines/${user.id}`)
+    fetch(`${API_URL}/today-medicines/${user.id}`)
         .then(res => res.json())
         .then(data => {
             const table = document.getElementById("medicineTable");
+            const msg = document.getElementById("msg");
+
+            if (!table) return;
+
             table.innerHTML = "";
 
-            if (!data.success || data.medicines.length === 0) {
+            if (!data.success || !data.medicines || data.medicines.length === 0) {
                 table.innerHTML = `
                     <tr>
                         <td colspan="6">No medicines for today.</td>
@@ -55,10 +61,15 @@ function loadMedicines() {
                     </tr>
                 `;
             });
+
+            if (msg) msg.innerText = "";
         })
         .catch(err => {
             console.log(err);
-            document.getElementById("msg").innerText = "Failed to load medicines.";
+            const msg = document.getElementById("msg");
+            if (msg) {
+                msg.innerText = "Failed to load medicines.";
+            }
         });
 }
 
@@ -72,17 +83,18 @@ function updateStatus(id, checked) {
         },
         body: JSON.stringify({ status })
     })
-    .then(res => res.json())
-    .then(data => {
-        if (!data.success) {
-            alert("Failed to update status");
-        }
-    })
-    .catch(err => {
-        console.log(err);
-        alert("Server error");
-    });
+        .then(res => res.json())
+        .then(data => {
+            if (!data.success) {
+                alert("Failed to update status");
+            }
+        })
+        .catch(err => {
+            console.log(err);
+            alert("Server error");
+        });
 }
+
 function goAddMedicine() {
     window.location.href = "add_medicine.html";
 }
@@ -99,20 +111,21 @@ function deleteMedicine(id) {
     fetch(`${API_URL}/delete-medicine/${id}`, {
         method: "DELETE"
     })
-    .then(res => res.json())
-    .then(data => {
-        if (data.success) {
-            alert("Medicine deleted successfully");
-            loadMedicines();
-        } else {
-            alert(data.message);
-        }
-    })
-    .catch(err => {
-        console.log(err);
-        alert("Failed to delete medicine");
-    });
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                alert("Medicine deleted successfully");
+                loadMedicines();
+            } else {
+                alert(data.message);
+            }
+        })
+        .catch(err => {
+            console.log(err);
+            alert("Failed to delete medicine");
+        });
 }
+
 function goBack() {
     window.location.href = "dashboard.html";
 }
