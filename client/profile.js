@@ -14,7 +14,7 @@ if (!user || !user.id) {
 }
 
 function goDashboard() {
-    window.location.href = "index.html";
+    window.location.href = "dashboard.html";
 }
 
 function goHistory() {
@@ -26,7 +26,7 @@ function goProfile() {
 }
 
 function goBack() {
-    window.location.href = "index.html";
+    window.location.href = "dashboard.html";
 }
 
 function logout() {
