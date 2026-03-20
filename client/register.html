@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <link rel="stylesheet" href="style/register.css">
+
+    <link rel="icon" href="assets/favicon.ico?v=2" type="image/x-icon">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2d6cdf">
+
 </head>
 <body>
 
@@ -33,13 +39,8 @@
             <label for="contact_number">Contact Number</label>
             <input type="text" id="contact_number" required>
 
-            <label for="password">Password</label>
-            <input type="password" id="password" required>
-
-            <div class="show-password">
-                <input type="checkbox" id="showPassword" onclick="showPassword()">
-                <label for="showPassword">Show Password</label>
-            </div>
+            <label for="pass">Password</label>
+            <input type="password" id="pass" name="password" required>
 
             <button type="submit">Register</button>
         </form>

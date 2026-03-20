@@ -1,29 +1,35 @@
-const form = document.getElementById("loginForm");
+const API_URL = "https://medtrack-api.onrender.com";
 
-
-form.addEventListener("submit", function (e) {
+document.getElementById("loginForm").addEventListener("submit", function(e) {
     e.preventDefault();
+
     const email = document.getElementById("email").value;
-    const password = document.getElementById("pass").value;
+    const pass = document.getElementById("pass").value;
 
-
-    // temporary
-    if (email ==="test@gmail.com" && password === "1234") {
-        alert("Login successfully");
-        window.location.href = "index.html";
-    } else {
-        alert("Login failed");
-    }
+    fetch(`${API_URL}/login`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email, pass })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            localStorage.setItem("user", JSON.stringify(data.user));
+            alert("Login successful");
+            window.location.href = "index.html";
+        } else {
+            document.getElementById("loginMessage").innerText = data.message;
+        }
+    })
+    .catch(err => {
+        console.log(err);
+        alert("Server error");
+    });
 });
 
-
-
 function togglePassword() {
-    const password = document.getElementById("pass");
-
-    if (password.type === "password") {
-        password.type = "text";
-    } else {
-        password.type = "password";
-    }
+    const pass = document.getElementById("pass");
+    pass.type = pass.type === "password" ? "text" : "password";
 }

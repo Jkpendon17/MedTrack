@@ -1,64 +1,64 @@
-const CACHE_NAME = "medtracker-v1";
+const CACHE_NAME = "medtrack-v1";
 
 const FILES_TO_CACHE = [
-  "/",
-  "/index.html",
-  "/login.html",
-  "/register.html",
-  "/dashboard.html",
-  "/add_medicine.html",
-  "/history.html",
-  "/profile.html",
+    "./",
+    "./index.html",
+    "./login.html",
+    "./register.html",
+    "./add_medicine.html",
+    "./history.html",
+    "./profile.html",
 
-  "/manifest.json",
+    "./dashboard.js",
+    "./login.js",
+    "./register.js",
+    "./add_medicine.js",
+    "./history.js",
+    "./profile.js",
 
-  "/style/dashboard.css",
-  "/style/login.css",
-  "/style/register.css",
-  "/style/history.css",
-  "/style/profile.css",
-  "/style/add_medicine.css",
+    "./manifest.json",
 
-  "/dashboard.js",
-  "/login.js",
-  "/register.js",
-  "/history.js",
-  "/profile.js",
-  "/add_medicine.js",
+    "./style/add_medicine.css",
+    "./style/dashboard.css",
+    "./style/history.css",
+    "./style/login.css",
+    "./style/profile.css",
+    "./style/register.css",
 
-  "/assets/favicon.ico",
-  "/assets/app-icon.png",
-  "/assets/profile.png"
+    "./assets/app-icon.png",
+    "./assets/favicon.ico",
+    "./assets/profile.png"
 ];
-// Install event: save files to cache
+
 self.addEventListener("install", event => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => {
-      return cache.addAll(FILES_TO_CACHE);
-    })
-  );
+    event.waitUntil(
+        caches.open(CACHE_NAME)
+            .then(cache => {
+                console.log("Caching files...");
+                return cache.addAll(FILES_TO_CACHE);
+            })
+            .catch(error => {
+                console.log("Cache install error:", error);
+            })
+    );
 });
 
-// Fetch event: use cache first, then network
 self.addEventListener("fetch", event => {
-  event.respondWith(
-    caches.match(event.request).then(response => {
-      return response || fetch(event.request);
-    })
-  );
+    event.respondWith(
+        caches.match(event.request).then(response => {
+            return response || fetch(event.request);
+        })
+    );
 });
 
-// Activate event: remove old caches
 self.addEventListener("activate", event => {
-  event.waitUntil(
-    caches.keys().then(cacheNames => {
-      return Promise.all(
-        cacheNames.map(cache => {
-          if (cache !== CACHE_NAME) {
-            return caches.delete(cache);
-          }
+    event.waitUntil(
+        caches.keys().then(keys => {
+            return Promise.all(
+                keys
+                    .filter(key => key !== CACHE_NAME)
+                    .map(key => caches.delete(key))
+            );
         })
-      );
-    })
-  );
+    );
 });

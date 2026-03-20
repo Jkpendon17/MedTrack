@@ -1,22 +1,47 @@
-form.addEventListener("submit", function(e){
-    e.preventDefault(); 
+const API_URL = "https://medtrack-api.onrender.com";
 
-    alert("Registration successful!");
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("registerForm");
 
-    window.location.href = "index.html"; 
+    form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const first_name = document.getElementById("first_name").value;
+        const last_name = document.getElementById("last_name").value;
+        const date_of_birth = document.getElementById("date_of_birth").value;
+        const address = document.getElementById("address").value;
+        const email = document.getElementById("email").value;
+        const contact_number = document.getElementById("contact_number").value;
+        const pass = document.getElementById("pass").value;
+
+        fetch(`${API_URL}/register`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                first_name,
+                last_name,
+                date_of_birth,
+                address,
+                email,
+                contact_number,
+                pass
+            })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                alert("Registration successful");
+                window.location.href = "index.html";
+            } else {
+                document.getElementById("msg").innerText = data.message;
+            }
+        })
+        .catch(err => {
+            console.log(err);
+            alert("Server error");
+        });
+    });
 });
 
-function logBtn(){
-    window.location.href = "login.html";
-}
-
-
-function togglePassword() {
-    const password = document.getElementById("password");
-
-    if (password.type === "password") {
-        password.type = "text";
-    } else {
-        password.type = "password";
-    }
-}

@@ -1,10 +1,10 @@
 {
-  "name": "MedTracker",
-  "short_name": "MedTracker",
+  "name": "MedTrack",
+  "short_name": "MedTrack",
   "start_url": "index.html",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#2e7d32",
+  "theme_color": "#2d6cdf",
   "icons": [
     {
       "src": "assets/app-icon.png",
